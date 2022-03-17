@@ -36,11 +36,15 @@ To use this function to count words, you'll need to implement your own `map_f` a
 
 4. Assume that a word `w` appears `n` times. What is the **work** and **span** of `word_count_reduce` for this word, assuming a parallel implementation of the `reduce` function?
 
-**Enter answer here**
+Work(n) = 2W(n/2) + 1 <br>
+logb(a) --> log2(2) = 1 <br>
+W(n) = &theta;(n)
+
+Span(n) = O(logn)
 
 
 5. Why are we going through all this trouble? Couldn't I just use this function to count words?
-
+<br>This function cannot be parallelized since it sequentially gets each element one at a time. 
 ```python
 docs = ['i am sam i am', 'sam is ham']
 counts = {}
@@ -52,8 +56,7 @@ for doc in docs:
 
 What is the problem that prevents us from easily parallelizing this solution?
 
-**Enter answer here**
-
+The for loops make it so that the function must run sequentially, making this method inefficient.
 
 ## Part 2: Sentiment analysis
 

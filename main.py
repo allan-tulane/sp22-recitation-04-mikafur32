@@ -36,11 +36,16 @@ def word_count_map(doc):
     >>> word_count_map('i am sam i am')
     [('i', 1), ('am', 1), ('sam', 1), ('i', 1), ('am', 1)]
     """
-    ###TODO
-    
-    
+
+    x = []
+    for word in doc.split():
+        x.append((word, 1))
+    return x
+
+
 
 def test_word_count_map():
+    print(word_count_map('i am sam i am'))
     assert word_count_map('i am sam i am') == \
            [('i', 1), ('am', 1), ('sam', 1), ('i', 1), ('am', 1)]
 
@@ -56,9 +61,10 @@ def word_count_reduce(group):
     
     NOTE: you should use call the `reduce` function here.
     """
-    ###TODO
-    
-    
+
+    return (group[0], reduce(plus, 0, group[1]))
+
+
 def test_word_count_reduce():
     assert word_count_reduce(['i', [1,1,1]]) == ('i', 3)
 
@@ -110,10 +116,7 @@ def reduce(f, id_, a):
     else:
         return f(reduce(f, id_, a[:len(a)//2]),
                  reduce(f, id_, a[len(a)//2:]))
-    
-    
-    
-    
+
 ### PART TWO ###
 
 def sentiment_map(doc,
@@ -130,10 +133,18 @@ def sentiment_map(doc,
     >>> sentiment_map('it was a terrible waste of time')
     [('negative', 1), ('negative', 1)]
     """
-    ###TODO
+    x = []
+    for word in doc.split():
+        if word in pos_terms:
+            x.append(('positive',1))
+        elif word in neg_terms:
+            x.append(('negative',1))
+    return x
+
 
 
 def test_sentiment_map():
+    print(sentiment_map('it was a terrible waste of time'))
     assert sentiment_map('it was a terrible waste of time') == [('negative', 1), ('negative', 1)]
 
     
